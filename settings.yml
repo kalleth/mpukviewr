@@ -1,0 +1,12 @@
+---
+:event: i45
+:secret: b5f6f7f1ed04aeeeea93d5a8291e52d6
+:feeds:
+  - :type: TwitterPoller
+    :details: kallethtest
+  - :type: TwitterPoller
+    :details: MPLAY_Wizzo
+  - :type: NewsPoller
+    :details: http://iseries.multiplay.co.uk/news/i45/feed/rss/
+  - :type: ForumPoller
+    :details: http://forums.multiplay.co.uk/external.php?type=RSS2&forumid=332
