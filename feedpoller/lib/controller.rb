@@ -13,6 +13,8 @@ class Controller
 
   DataMapper.finalize
 
+  CONFIG_FILE = "/data/mpuk/settings.yml"
+
   def self.start_faye
     @bayeux = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
     Thread.new do
@@ -36,8 +38,8 @@ class Controller
   end
 
   def load_config_and_create_pollers
-    @config = YAML.load_file("../settings.yml")
-    @config_mtime = File.mtime("../settings.yml")
+    @config = YAML.load_file(CONFIG_FILE)
+    @config_mtime = File.mtime(CONFIG_FILE)
     @pollers = []
     @config[:feeds].each do |feed|
       @pollers << feed[:type].classify.constantize.new(feed[:details])
@@ -45,7 +47,7 @@ class Controller
   end
 
   def check_if_config_needs_reloading
-    if @config_mtime != File.mtime("../settings.yml")
+    if @config_mtime != File.mtime(CONFIG_FILE)
       DaemonKit.logger.info("Settings modified, reloading pollers..")
       load_config_and_create_pollers
     end
