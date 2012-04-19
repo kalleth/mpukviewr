@@ -300,6 +300,14 @@ strong {
 	background-image: url(/images/icons/twitter.png)
 }
 
+.tannoy .icon {
+	background-image: url(/images/icons/tannoy.png)
+}
+
+.tourney .icon {
+	background-image: url(/images/icons/tournament.png)
+}
+
 .forum .icon {
 	background-image: url(/images/icons/forum.png)
 }

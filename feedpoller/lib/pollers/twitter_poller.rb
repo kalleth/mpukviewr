@@ -37,8 +37,8 @@ class TwitterPoller < Poller
         end
       end
     rescue
-      DaemonKit.logger.error $!.message
-	  DaemonKit.logger.error $!.backtrace.join("\n")
+      DaemonKit.logger.error($!.message)
+      DaemonKit.logger.error($!.backtrace.join("\n"))
     end
     @next_poll_time = Time.now.to_i + 360 #6 minutes
   end

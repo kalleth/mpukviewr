@@ -27,16 +27,20 @@
         <form id="options">
           <legend>Enabled services:</legend>
           <input type="checkbox" name="services" id="twitter_enabled" value="Twitter" checked />
-          <label for="twitter">Twitter</label><br/>
+          <label for="twitter_enabled">Twitter</label><br/>
           <input type="checkbox" name="services" id="news_enabled" value="Blog" checked />
-          <label for="blog">News Articles</label><br/>
+          <label for="news_enabled">News Articles</label><br/>
           <input type="checkbox" name="services" id="forum_enabled" value="Forum" checked />
-          <label for="Forum">Forum Threads</label><br/>
+          <label for="forum_enabled">Forum Threads</label><br/>
+          <input type="checkbox" name="services" id="tannoy_enabled" value="Tannoy" checked />
+          <label for="tannoy_enabled">General Announcements</label><br/>
+          <input type="checkbox" name="services" id="tourney_enabled" value="Tourney" checked />
+          <label for="tourney_enabled">Tournament Announcements</label><br/>
           <legend>Notifications:</legend>
           <input type="checkbox" name="notifications" id="sounds_enabled" value="Sounds" checked />
-          <label for="sounds">Enable Sounds</label><br/>
+          <label for="sounds_enabled">Enable Sounds</label><br/>
           <input type="checkbox" name="notifications" id="notifications_enabled" value="Desktop" />
-          <label for="desktop">Enable Desktop Notifications</label><br/>
+          <label for="notifications_enabled">Enable Desktop Notifications</label><br/>
         </form>
         <legend>Hints:</legend>
         <ul>
@@ -52,7 +56,7 @@
       <ul>
         <% @events.each do |event| %>
           <li class="news_item <%= event.etype.downcase %>">
-          <div class="icon"></div>
+          <div class="icon" title="<%= event.etype %>"></div>
           <p class="news_title">
           <% if event.etype == "NEWS" %>
             <a href="<%= event.uid %>" target="_blank"><%= event.title %></a>

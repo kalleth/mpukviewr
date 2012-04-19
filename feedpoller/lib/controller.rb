@@ -22,8 +22,20 @@ class Controller
     end
   end
 
+  def self.stop_faye
+    @bayeux.stop
+  end
+
+  def self.config=(cfg)
+    @config = cfg
+  end
+  
+  def self.config
+    @config
+  end
+
   def self.notify(event)
-    event["secret"] = @config[:secret]
+    event["secret"] = config[:secret]
     @bayeux.get_client.publish("/messages", event)
   end
 
@@ -38,10 +50,10 @@ class Controller
   end
 
   def load_config_and_create_pollers
-    @config = YAML.load_file(CONFIG_FILE)
+    Controller.config = YAML.load_file(CONFIG_FILE)
     @config_mtime = File.mtime(CONFIG_FILE)
     @pollers = []
-    @config[:feeds].each do |feed|
+    Controller.config[:feeds].each do |feed|
       @pollers << feed[:type].classify.constantize.new(feed[:details])
     end
   end

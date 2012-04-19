@@ -96,7 +96,7 @@ $(document).ready(function() {
   var faye_url = "http://" + window.location.hostname + ":9292/faye";
   var client = new Faye.Client(faye_url);
   var s = client.subscribe('/messages', function(evt) {
-    var icon = '<div class="icon"></div>';
+    var icon = '<div class="icon" title="'+evt.evtype+'"></div>';
     if(evt.etype == "NEWS") {
       var title = '<p class="news_title"><a href="'+evt.uid+'">'+evt.title+'</a></p>'
     } else {

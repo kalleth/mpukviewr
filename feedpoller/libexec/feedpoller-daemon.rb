@@ -13,7 +13,12 @@ DaemonKit::Application.running! do |config|
   # config.trap( 'INT' ) do
   #   # do something clever
   # end
-  # config.trap( 'TERM', Proc.new { puts 'Going down' } )
+#  config.trap( 'TERM', Proc.new { puts 'Going down' } )
+  config.trap('TERM') do
+    #kill the faye server
+    puts "STOPPING FAYE"
+    Controller.stop_faye
+  end
 end
 
 controller = Controller.new
