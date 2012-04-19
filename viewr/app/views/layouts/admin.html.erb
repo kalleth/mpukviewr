@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Viewr - ADMIN INTERFACE</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container-fluid" style="padding-top: 20px;">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Menu</li>
+              <li class="active">
+                <a href="#"><i class="icon-eye-open"></i> Overview</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-envelope"></i> Post Message</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-retweet"></i> Feeds</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-cog"></i> General Settings</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon-user"></i> User Management</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span8">
+          <h1><%= @title %><small>ADMIN INTERFACE</small></h1>
+          <%= render :partial => "shared/flash_messages", :locals => {:flash => flash} %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer style="text-align: center;">
+    <br />
+    <p>&copy; 2011 <a href="http://www.trdev.co.uk">Tom "kalleth" Russell</a></p>
+    <p><small><a href="/tech">Technical Information</a></small></p>
+    </footer>
+  </body>
+</html>

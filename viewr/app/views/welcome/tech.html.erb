@@ -1,0 +1,38 @@
+<% @title = "Technical Information about Viewr" %>
+<div class="page-header">
+  <h2>Architecture</h2>
+</div>
+<p>Viewr runs on a FreeBSD jail kindly provided by <a href="http://www.multiplay.co.uk">Multiplay</a>.</p>
+<p>Viewr consists of:</p>
+<ul>
+  <li>Rails 3.1.1 application (ruby 1.9.3) serving these pages</li>
+  <li>MySQL database server</li>
+  <li>Ruby daemon using daemon-kit polling various sources</li>
+  <li>Faye client and server using pub/sub for messaging</li>
+</ul>
+<div class="page-header">
+  <h2>Libraries Used</h2>
+</div>
+<p>The following libraries were used (but not harmed) in the making of
+viewr:</p>
+<ul>
+  <li><a href="http://www.rubyonrails.org">Rails 3.1.1</a></li>
+  <li><a href="http://www.ruby-lang.org">Ruby 1.9.3</a></li>
+  <li><a href="http://www.datamapper.org">Datamapper 1.2.0</a></li>
+  <li><a href="https://github.com/kennethkalmer/daemon-kit">Daemon-Kit</a></li>
+  <li><a href="http://faye.jcoglan.org">Faye</a></li>
+  <li><a href="https://github.com/cardmagic/simple-rss">SimpleRSS</a></li>
+  <li><a href="http://www.freesound.org/people/JustinBW/sounds/80921/">Notification sound by JustinBW</a></li>
+</ul>
+<div class="page-header">
+  <h2>Polling Intervals</h2>
+</div>
+<p>The below are the current polling settings for the backend of this
+application. Any application/feed owners can ask these to be changed if
+desperately required.</p>
+<ul>
+  <li>Twitter: 360 seconds (6 minutes)</li>
+  <li>Forums RSS: 600 seconds (10 minutes)</li>
+  <li>iseries Site news: 300 seconds (5 minutes)</li>
+</ul>
+

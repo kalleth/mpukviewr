@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Viewr</title>
+  <%= stylesheet_link_tag "application" %>
+  <%=

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Viewr - Multiplay i44 Updates Hub</title>
+  <link href="/assets/application.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/bootstrap.min.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/main.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/main.js?body=1" type="text/javascript"></script>
+<script src="/assets/main.js?body=1" type="text/javascript"></script>
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="Yof95ePKBAfjVEvz301uAWBrew0xI+05eerhvKmxyzg=" name="csrf-token" />
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="bigger page-header">
+        <h1>Viewr <small>i44 Information Aggregator</small></h1>
+      </div>
+      <div class="row">
+        <div class="span14">
+          <div class="page-header">
+  <h2>What is Viewr?</h2>
+</div>
+<p>Viewr is an information aggregator pulling together multiple different
+information sources on one display, so that punters at i44 get a proper overview
+of what is going on at any time.</p>
+<p>Viewr aggregates the following feeds:</p>
+<ul>
+  <li>Multiplay '@<a href="http://twitter.com/iseries">iseries</a>' twitter feed</li>
+  <li>@<a href="http://twitter.com/MPLAY_Wizzo">MPLAY_Wizzo</a> twitter feed</li>
+  <li>Multiplay insomnia44 forum 'latest posts'</li>
+  <li>Multiplay <a href="http://iseries.multiplay.co.uk">iseries</a> website 'i44' category news posts</li>
+  <li>System updates provided through my twitter feed at @<a href="http://twitter.com/khalleth">khalleth</a></li>
+  <li><span class="label warning">coming soon</span> Tournament Results via Clanforge</li>
+  <li><span class="label warning">coming soon</span> Your Upcoming Matches via Clanforge</li>
+  <li><span class="label warning">coming soon</span> Stage Schedule</li>
+  <li><span class="label warning">coming soon</span> Global Broadcasts for Everyone!</li>
+</ul>
+<hr />
+<div class="row">
+  <div class="span4"> &nbsp; </div>
+  <div class="span6" style="text-align: center;">
+    <a href="#" id="show_popup" class="btn large primary"> &nbsp; &nbsp; Launch Viewr! &nbsp; &nbsp; </a>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2011 <a href="http://www.trdev.co.uk">Tom "kalleth" Russell</a></p>
+      <p><small><a href="/tech">Technical Information</a></small></p>
+    </footer>
+  </div>
+</body>
+</html>
