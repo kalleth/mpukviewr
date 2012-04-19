@@ -1,0 +1,33 @@
+# If you need to 'vendor your gems' for deploying your daemons, bundler is a
+# great option. Update this Gemfile with any additional dependencies and run
+# 'bundle install' to get them all installed. Daemon-kit's capistrano
+# deployment will ensure that the bundle required by your daemon is properly
+# installed.
+
+source :gemcutter
+
+# daemon-kit
+gem 'daemon-kit'
+
+# safely (http://github.com/kennethkalmer/safely)
+gem 'safely'
+
+gem 'twitter'
+gem 'simple-rss'
+gem 'faye'
+gem 'thin'
+gem 'rack', "1.3.5"
+gem 'sanitize'
+
+# gem 'toadhopper' # For reporting exceptions to hoptoad
+# gem 'mail' # For reporting exceptions via mail
+gem 'dm-core'
+gem 'dm-timestamps'
+gem 'dm-migrations'
+gem 'dm-constraints'
+gem 'dm-validations'
+gem 'dm-types'
+gem 'dm-mysql-adapter'
+gem 'data_mapper'
+
+# For more information on bundler, please visit http://gembundler.com

@@ -1,0 +1,8 @@
+#!/usr/local/bin/ruby
+#
+# Stub executable for feedpoller
+#
+
+require File.expand_path('../../config/environment',  __FILE__)
+
+DaemonKit::Application.exec( DAEMON_ROOT + '/libexec/feedpoller-daemon.rb' )
