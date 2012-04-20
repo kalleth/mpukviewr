@@ -27,8 +27,8 @@
         <h1>Settings</h1>
         <form id="options">
           <legend>Enabled services:</legend>
-          <input type="checkbox" name="services" id="twitter_enabled" value="Twitter" checked />
-          <label for="twitter_enabled">Twitter</label><br/>
+          <input type="checkbox" name="services" id="tweet_enabled" value="Twitter" checked />
+          <label for="tweet_enabled">Twitter</label><br/>
           <input type="checkbox" name="services" id="news_enabled" value="Blog" checked />
           <label for="news_enabled">News Articles</label><br/>
           <input type="checkbox" name="services" id="forum_enabled" value="Forum" checked />
@@ -50,7 +50,7 @@
           <li>Assume that connection to the feed is ok unless "Connection Error" appears on the page header.</li>
           <li>Do not refresh the page, it will update automatically.</li>
         </ul>
-        <div id="credit">Design by <a href="http://www.twitter.com/cosmicduck" target="_blank">Cosmic Duck</a></div>			
+        <div id="credit">Design by <a href="http://www.twitter.com/cosmicduck" target="_blank">Cosmic Duck</a>, Code by <a href="http://www.trdev.co.uk" target="_blank">kalleth</a></div>			
       </div>
     </div>
     <div id="news_container">
@@ -66,7 +66,7 @@
           <% end %>
           </p>
           <p class="time">
-          <time class="timeago" title="<%= event.happened_at %>" datetime="<%= event.happened_at %>">
+          <time class="timeago" data-tooltip="<%= event.happened_at %>" datetime="<%= event.happened_at %>">
               <%= shorter_time_ago_in_words(event.happened_at) %>
             </time>
           </p>

@@ -4,23 +4,28 @@ var since_defocused = 0;
 var Settings = new Object({
   notifications_enabled: false,
   sounds_enabled: true,
-  twitter_enabled: true,
+  tweet_enabled: true,
   forum_enabled: true,
   tourney_enabled: true,
   facebook_enabled: true,
   news_enabled: true
 });
 
+
 function alertUser(evt) {
-  if(!window_focus) {
-    since_defocused++;
-    document.title = "("+since_defocused+") Viewr";
-  }
-  if(Settings.sounds_enabled === true) {
-    $("audio")[0].play();
-  }
-  if(window.webkitNotifications && Settings.notifications_enabled === true) {
-    dtopNotify(evt);
+  var klass = evt.etype + '_enabled';
+  if(Settings[klass.toLowerCase()] === true) {
+    if(!window_focus) {
+      since_defocused++;
+      document.title = "("+since_defocused+") Viewr";
+    }
+    if(Settings.sounds_enabled === true) {
+      console.log("Playing sounds");
+      $("audio")[0].play();
+    }
+    if(window.webkitNotifications && Settings.notifications_enabled === true) {
+      dtopNotify(evt);
+    }
   }
 }
 
@@ -56,13 +61,29 @@ function storeSettingsInCookie() {
   $.cookie('settings', JSON.stringify(Settings), { expires: 7 });
 }
 
+function respectFilters(klass, new_value) {
+  if(klass != "sounds" && klass != "notifications") {
+    if(new_value === false) {
+      $(".news_item."+klass).fadeOut('fast', function() {
+        addCSSRule(".news_item."+klass, "display", "none");
+      });
+    } else {
+      $(".news_item."+klass).fadeIn('fast', function() {
+        addCSSRule(".news_item."+klass, "display", "block");
+      });
+    }
+  }
+}
+
 //avoid storing too frequently.
 db_storeSettingsInCookie = storeSettingsInCookie.debounce(500, false);
 
 function checkListener (evt) {
     //var id = this.id.substr(9);
-    Settings[this.id] = $("#" + this.id + ":checked").length > 0;
-    console.log("Check listener");
+    var new_value = ($("#" + this.id + ":checked").length > 0);
+    Settings[this.id] = new_value;
+    var klass = this.id.substr(0, (this.id.length - 8));
+    respectFilters(klass, new_value);
     db_storeSettingsInCookie();
 }
 
@@ -88,10 +109,13 @@ $(document).ready(function() {
   $(":checkbox[id*='enabled']").each(function(cb){
     $(this).click(checkListener);
     //reflect settings
+    var klass = this.id.substr(0, (this.id.length - 8));
     if (Settings[this.id]) {
       $(this).prop("checked", true);
+      respectFilters(klass, true);
     } else {
       $(this).prop("checked", false);
+      respectFilters(klass, false);
     }
   });
   $("#notifications_enabled").bind('click', function() {
@@ -109,12 +133,15 @@ $(document).ready(function() {
     } else {
       var title = '<p class="news_title">' + evt.title + '</p>';
     }
-    var tmfield = '<time class="timeago" title="' + evt.happened_at + '" datetime="' + evt.happened_at + '">Now</time>';
+    var tmfield = '<time class="timeago" data-tooltip="' + evt.happened_at + '" datetime="' + evt.happened_at + '">Now</time>';
     var time = '<p class="time">'+tmfield+'</p>';
     var body = '<p class="news_body">' + evt.description + '</p>';
     var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
     $('#news_container ul').prepend($(li));
+    var klass = evt.etype + '_enabled';
+    if(Settings[klass.toLowerCase()] === true) {
     $('#added_event').fadeIn(800);
+    }
     $('#added_event time').timeago();
     $('#added_event').attr('id','');
     //remove the last child as well
