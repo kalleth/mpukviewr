@@ -296,32 +296,45 @@ strong {
 	border-radius:5px
 }
 
+
 .tweet .icon {
-	background-image: url(/images/icons/twitter.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -260px;
 }
 
 .tannoy .icon {
-	background-image: url(/images/icons/tannoy.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -60px;
 }
 
 .tourney .icon {
-	background-image: url(/images/icons/tournament.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -310px;
 }
 
 .forum .icon {
-	background-image: url(/images/icons/forum.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -160px;
+}
+
+.general .icon {
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -10px;
 }
 
 .news .icon {
-	background-image: url(/images/icons/news.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -360px;
 }
 
 .facebook .icon {
-	background-image: url(/images/icons/facebook.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -210px;
 }
 
 .service .icon {
-	background-image: url(/images/icons/service.png)
+	background-image: url(/images/icons/iconsprite.png);
+	background-position: -10px -110px;
 }
 
 .news_title {

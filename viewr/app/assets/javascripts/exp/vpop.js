@@ -6,6 +6,8 @@ var Settings = new Object({
   sounds_enabled: true,
   twitter_enabled: true,
   forum_enabled: true,
+  tourney_enabled: true,
+  facebook_enabled: true,
   news_enabled: true
 });
 
@@ -25,8 +27,12 @@ function alertUser(evt) {
 function dtopNotify(evt) {
   if (window.webkitNotifications.checkPermission() < 1) {
     var title = evt.etype + ": " + evt.title;
-    var body = evt.description;
-    var popup = window.webkitNotifications.createNotification("", title, body);
+    var html = evt.description;
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    var icon = "http://viewr.multiplay.co.uk/images/icons/" + evt.etype.toLowerCase() + ".png";
+    var body = div.textContent ||  div.innerText || "Error!";
+    var popup = window.webkitNotifications.createNotification(icon, title, body);
     popup.show();
     setTimeout(function() {
       popup.cancel();
@@ -93,20 +99,23 @@ $(document).ready(function() {
       window.webkitNotifications.requestPermission();
     }
   });
+  $("time.timeago").timeago();
   var faye_url = "http://" + window.location.hostname + ":9292/faye";
   var client = new Faye.Client(faye_url);
   var s = client.subscribe('/messages', function(evt) {
-    var icon = '<div class="icon" title="'+evt.evtype+'"></div>';
+    var icon = '<div class="icon" title="'+evt.etype+'"></div>';
     if(evt.etype == "NEWS") {
       var title = '<p class="news_title"><a href="'+evt.uid+'">'+evt.title+'</a></p>'
     } else {
       var title = '<p class="news_title">' + evt.title + '</p>';
     }
-    var time = '<p class="time">TIME</p>';
+    var tmfield = '<time class="timeago" title="' + evt.happened_at + '" datetime="' + evt.happened_at + '">Now</time>';
+    var time = '<p class="time">'+tmfield+'</p>';
     var body = '<p class="news_body">' + evt.description + '</p>';
     var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
     $('#news_container ul').prepend($(li));
     $('#added_event').fadeIn(800);
+    $('#added_event time').timeago();
     $('#added_event').attr('id','');
     //remove the last child as well
     $('#news_container ul li:last-child').fadeOut(800, function() {

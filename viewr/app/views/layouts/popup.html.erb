@@ -7,6 +7,7 @@
     <%= javascript_include_tag "jquery_new" %>
     <%= javascript_include_tag "functions" %>
     <%= javascript_include_tag "exp/vpop" %>
+    <%= javascript_include_tag "exp/jquery.timeago" %>
     <%= javascript_include_tag "exp/faye-browser-min" %>
     <%= csrf_meta_tags %>
   </head>
@@ -64,7 +65,11 @@
             <%= raw event.title %>
           <% end %>
           </p>
-          <p class="time"><%= shorter_time_ago_in_words(event.happened_at) %></p>
+          <p class="time">
+          <time class="timeago" title="<%= event.happened_at %>" datetime="<%= event.happened_at %>">
+              <%= shorter_time_ago_in_words(event.happened_at) %>
+            </time>
+          </p>
           <p class="news_body">
           <%= raw event.description %>
           </p>

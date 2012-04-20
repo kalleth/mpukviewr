@@ -9,6 +9,23 @@ require 'pollers/news_poller'
 require 'pollers/twitter_poller'
 require 'faye'
 
+class ServerAuth
+
+  def incoming(message, callback)
+    if message['channel'] == '/messages'
+      puts "Message incoming on messages channel"
+      if message['data'] && message['data']['secret'] != Controller.config[:secret]
+        message['error'] = "You are not authorized to send to this stream."
+      else
+        #authorized
+        message['data'].delete('secret')
+      end
+    end
+    callback.call(message)
+  end
+
+end
+
 class Controller
 
   DataMapper.finalize
@@ -17,6 +34,7 @@ class Controller
 
   def self.start_faye
     @bayeux = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
+    @bayeux.add_extension(ServerAuth.new)
     Thread.new do
       @bayeux.listen(9292)
     end

@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def shorter_time_ago_in_words(time)
     t = time_ago_in_words(time)
-    sh = t.gsub("about ", "~").
+    sh = t.gsub("about ", "").
       gsub(" seconds", "s").
       gsub(" second", "s").
       gsub(" minutes", "m").

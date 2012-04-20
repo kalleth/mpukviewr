@@ -3,7 +3,7 @@
 :secret: b5f6f7f1ed04aeeeea93d5a8291e52d6
 :feeds:
   - :type: TwitterPoller
-    :details: kallethtest
+    :details: iseries
   - :type: TwitterPoller
     :details: MPLAY_Wizzo
   - :type: NewsPoller
