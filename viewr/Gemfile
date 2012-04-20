@@ -17,6 +17,7 @@ gem 'thin'
 gem 'cancan'
 gem 'simple-navigation'
 gem 'faye'
+gem 'sanitize'
 
 gem 'dm-rails',               DM_VERSION
 gem 'dm-sqlite-adapter', DM_VERSION

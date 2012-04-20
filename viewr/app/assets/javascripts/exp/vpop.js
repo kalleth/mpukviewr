@@ -8,6 +8,8 @@ var Settings = new Object({
   forum_enabled: true,
   tourney_enabled: true,
   facebook_enabled: true,
+  general_enabled: true,
+  service_enabled: true,
   news_enabled: true
 });
 
@@ -29,14 +31,19 @@ function alertUser(evt) {
   }
 }
 
+function textFromHTML(data) {
+  var div = document.createElement('div');
+  div.innerHTML = data;
+  var body = div.textContent || div.innerText || data;
+  return body;
+}
+
 function dtopNotify(evt) {
   if (window.webkitNotifications.checkPermission() < 1) {
     var title = evt.etype + ": " + evt.title;
-    var html = evt.description;
-    var div = document.createElement('div');
-    div.innerHTML = html;
+    title = textFromHTML(title);
     var icon = "http://viewr.multiplay.co.uk/images/icons/" + evt.etype.toLowerCase() + ".png";
-    var body = div.textContent ||  div.innerText || "Error!";
+    var body = textFromHTML(evt.description);
     var popup = window.webkitNotifications.createNotification(icon, title, body);
     popup.show();
     setTimeout(function() {
@@ -51,6 +58,8 @@ function fadeUnseen() {
       $("li.unseen").each(function() {
         $(this).animate({backgroundColor:"#f8f8f8"}, 2000, function() {
           $(this).removeClass('unseen');
+          $(this).removeClass('hidden');
+          $(this).attr('style', '');
         });
       });
     }, 1000);
@@ -105,6 +114,10 @@ $(document).ready(function() {
   //reflect cookie settings if exists
   if ($.cookie('settings') != null) {
     Settings = JSON.parse($.cookie('settings'));
+    //force general, tannoy and service announcements to be made
+    Settings.general_enabled = true;
+    Settings.tannoy_enabled = true;
+    Settings.service_enabled = true;
   }
   $(":checkbox[id*='enabled']").each(function(cb){
     $(this).click(checkListener);
@@ -124,12 +137,13 @@ $(document).ready(function() {
     }
   });
   $("time.timeago").timeago();
+  $("time").tooltip({placement: 'left'});
   var faye_url = "http://" + window.location.hostname + ":9292/faye";
   var client = new Faye.Client(faye_url);
   var s = client.subscribe('/messages', function(evt) {
     var icon = '<div class="icon" title="'+evt.etype+'"></div>';
     if(evt.etype == "NEWS") {
-      var title = '<p class="news_title"><a href="'+evt.uid+'">'+evt.title+'</a></p>'
+      var title = '<p class="news_title"><a href="'+evt.uid+'" target="_blank">'+evt.title+'</a></p>'
     } else {
       var title = '<p class="news_title">' + evt.title + '</p>';
     }
@@ -140,7 +154,12 @@ $(document).ready(function() {
     $('#news_container ul').prepend($(li));
     var klass = evt.etype + '_enabled';
     if(Settings[klass.toLowerCase()] === true) {
-    $('#added_event').fadeIn(800);
+      $('#added_event').fadeIn(800, function() {
+        $('#added_event').attr('style', '');
+        $('#added_event time').tooltip({
+          placement: 'left'
+        });
+      });
     }
     $('#added_event time').timeago();
     $('#added_event').attr('id','');

@@ -1,0 +1,58 @@
+body {
+  background-color: #efefef;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+.checkboxcont {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  float: right;
+}
+.page-header {
+  text-align: center;
+}
+.feed {
+  position: absolute;
+  top: 100px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: 5px;
+  padding: 5px;
+  overflow: auto;
+  border: 1px solid #999;
+}
+
+.feed .event { 
+  padding: 3px 0px;
+  border-bottom: 1px solid #bbb;
+}
+
+.label {
+  padding: 1px 3px 2px;
+  font-size: 9.75px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #BFBFBF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+a:link, a:visited {
+  color: #222;
+}
+.label.tweet { background-color: #62CFFC; }
+.label.forum { background-color: #0E48C4; }
+.label.news { background-color: #F89406; }
+.labelcontainer {
+  float: left;
+  width: 45px;
+}

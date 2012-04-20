@@ -28,3 +28,76 @@
 >> Thin web server (v1.3.1 codename Triple Espresso)
 >> Maximum connections set to 1024
 >> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Stopping ...
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+cache: [GET /images/icons/tweet.png] miss
+cache: [GET /assets/exp/popup-b367de5eae7fd8c729e7c62e67569ffa.css] fresh
+cache: [GET /assets/exp/vpop-8dc9cf8a3a9683340cf4bee72183e733.js] fresh
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Stopping ...
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Stopping ...
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Stopping ...
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Stopping ...
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+cache: [GET /popup] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] miss
+cache: [GET /assets/exp/jquery-52a53a1b4f3508952fede47bd520c8a3.timeago] miss
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] miss
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] miss
+cache: [GET /assets/exp/faye-browser-min-648dbd2fb1a5dcbf6d4f4725579c450c.js] miss
+cache: [GET /assets/exp/popup-b367de5eae7fd8c729e7c62e67569ffa.css] miss
+cache: [GET /assets/exp/vpop-07f75467caceb4d849e2533c0c8b364b.js] fresh
+cache: [GET /popup] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] miss
+cache: [GET /assets/exp/jquery-52a53a1b4f3508952fede47bd520c8a3.timeago] miss
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop

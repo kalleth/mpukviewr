@@ -1,6 +1,10 @@
+require "#{Rails.root}/lib/autolink"
+
 class AdminController < ApplicationController
 
   before_filter :authenticate_user!
+
+  include Autolink
 
   def index
   end
@@ -16,8 +20,10 @@ class AdminController < ApplicationController
       @msg_title = params[:message_title]
       render :action => :post
     else
+      title = auto_link(Sanitize.clean(params[:message_title]))
+      desc = auto_link(Sanitize.clean(params[:message_data]))
       t = ViewrSetting.instance.config[:postable_types].detect{|p| p[:type] == params[:message_type]}
-      Event.create(:etype => params[:message_type], :title => params[:message_title], :description => params[:message_data], :happened_at => Time.now)
+      Event.create(:etype => params[:message_type], :title => title, :description => desc, :happened_at => Time.now)
       flash[:notice] = "Post sent successfully."
       redirect_to :action => :index
     end

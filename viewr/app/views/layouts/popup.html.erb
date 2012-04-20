@@ -8,6 +8,7 @@
     <%= javascript_include_tag "functions" %>
     <%= javascript_include_tag "exp/vpop" %>
     <%= javascript_include_tag "exp/jquery.timeago" %>
+    <%= javascript_include_tag "exp/jquery.tooltip" %>
     <%= javascript_include_tag "exp/faye-browser-min" %>
     <%= csrf_meta_tags %>
   </head>
@@ -16,7 +17,7 @@
       <source src="/notification.wav" />
     </audio>
     <div id="header">
-      <a class ="button left" href="http://iseries.multiplay.co.uk/" title="iSeries Homepage" target="_blank"><img id="mplogo" src="/images/mplogo.png"/></a>
+      <a class ="button incleft" href="http://iseries.multiplay.co.uk/" title="iSeries Homepage" target="_blank"><img id="mplogo" src="/images/mplogo.png"/></a>
       <!-- If connection problem, remove hidden class from span, if not, use hidden class.-->
       <div id="header_title">Viewr - i45<span id="status" class="hidden"> - Connection Error</span></div>
       <a class="button right" href="#" id="toggle_settings" title="Settings"><img id="cog" src="/images/cog2.png"/></a>
@@ -47,8 +48,8 @@
         <ul>
           <li>Desktop notifications only supported in webkit browsers (i.e. Chrome).</li>
           <li>Hover over times to see actual posted time.</li>
-          <li>Assume that connection to the feed is ok unless "Connection Error" appears on the page header.</li>
           <li>Do not refresh the page, it will update automatically.</li>
+          <li>Technical information &amp; Libraries used can be found <a href="/tech" target="_blank">here</a></li>
         </ul>
         <div id="credit">Design by <a href="http://www.twitter.com/cosmicduck" target="_blank">Cosmic Duck</a>, Code by <a href="http://www.trdev.co.uk" target="_blank">kalleth</a></div>			
       </div>
@@ -66,7 +67,7 @@
           <% end %>
           </p>
           <p class="time">
-          <time class="timeago" data-tooltip="<%= event.happened_at %>" datetime="<%= event.happened_at %>">
+          <time class="timeago" data-title="<%= event.happened_at.strftime("%d/%m/%y %H:%M") %>" datetime="<%= event.happened_at %>">
               <%= shorter_time_ago_in_words(event.happened_at) %>
             </time>
           </p>
