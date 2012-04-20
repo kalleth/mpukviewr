@@ -1,0 +1,39 @@
+<% @title = "Post Message" %>
+Few things to note:
+<ul>
+  <li>HTML is removed. Links are automatically matched and turned into links, but everything else will be nonexistent.</li>
+  <li>Consider that some users will have sound notifications and desktop notifications turned on. Don't spam them, or they're likely to turn them off.</li>
+  <li>Tannoy Announcements and System announcements cannot be filtered out by the user. Don't abuse them.</li>
+  <li>System announcements are ONLY for announcements to do with viewr itself.</li>
+</ul>
+<%= form_tag({}, {:class => "form-horizontal"}) do %>
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="message_type">Type: </label>
+      <div class="controls">
+        <select id="message_type" name="message_type">
+          <% ViewrSetting.instance.config[:postable_types].each do |type| %>
+            <option value="<%= type[:type] %>"><%= type[:desc] %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="message_title">Title: </label>
+      <div class="controls">
+        <input type="text" name="message_title" id="message_title" class="span6" value="<%= @msg_title %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="message_data">Message: </label>
+      <div class="controls">
+        <textarea name="message_data" id="message_data" class="span6" rows="4"><%= @message %></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-large btn-primary" value="Send Message" />
+      </div>
+    </div>
+  </fieldset>
+<% end %>

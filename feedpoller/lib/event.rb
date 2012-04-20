@@ -1,3 +1,5 @@
+require 'faye'
+
 class Event
 
   include DataMapper::Resource

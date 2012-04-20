@@ -31,4 +31,17 @@ module ApplicationHelper
   rescue
     "unknown"
   end
+
+  def translate_feed(feed)
+    case feed[:type]
+    when "TwitterPoller"
+      "Twitter account: <a href=\"https://twitter.com/#{feed[:details]}\" target=\"_blank\">#{feed[:details]}</a>"
+    when "NewsPoller"
+      "Multiplay UK Event News"
+    when "ForumPoller"
+      "Multiplay UK Event Forum"
+    else
+      feed[:type]
+    end
+  end
 end

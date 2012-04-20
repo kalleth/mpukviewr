@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Event
 
   include DataMapper::Resource
@@ -14,7 +16,23 @@ class Event
   after :save, :alert
 
   def alert
-   #nothing right now
+    #nothing right now
+    obj = {
+      "etype" => etype,
+      "uid" => uid,
+      "title" => title,
+      "description" => description,
+      "happened_at" => happened_at.to_s,
+      "secret" => ViewrSetting.instance.config[:secret]
+    }
+
+    msg = {
+      :data => obj, 
+      :channel => "/messages"
+    }
+
+    Net::HTTP.post_form(URI.parse("http://0.0.0.0:9292/faye"), :message => msg.to_json)
+
   end
 
 end

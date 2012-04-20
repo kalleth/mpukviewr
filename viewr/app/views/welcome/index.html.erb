@@ -7,11 +7,10 @@ information sources on one display, so that punters at i45 get a proper overview
 of what is going on at any time.</p>
 <p>Viewr aggregates the following feeds:</p>
 <ul>
-  <li>Various twitter feeds to be enumerated from the database.</li>
-  <li>Multiplay '@<a href="http://twitter.com/iseries">iseries</a>' twitter feed</li>
-  <li>@<a href="http://twitter.com/MPLAY_Wizzo">MPLAY_Wizzo</a> twitter feed</li>
-  <li>Multiplay insomnia45 forum 'latest posts'</li>
-  <li>Multiplay <a href="http://iseries.multiplay.co.uk">iseries</a> website 'i45' category news posts</li>
+  <% @viewr_settings[:feeds].each do |feed| %>
+    <li><%= raw translate_feed(feed) %></li> 
+  <% end %>
+  <li>Manually submitted alerts submitted through this application by the Content Team.</li>
   <li>System updates provided through this application.</li>
   <li><span class="label label-warning">coming soon</span> Tournament Results via Clanforge</li>
   <li><span class="label label-warning">coming soon</span> Your Upcoming Matches via Clanforge</li>
