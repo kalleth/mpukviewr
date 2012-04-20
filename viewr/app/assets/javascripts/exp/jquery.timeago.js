@@ -128,7 +128,8 @@
       element.data("timeago", { datetime: $t.datetime(element) });
       var text = $.trim(element.text());
       if (text.length > 0) {
-        element.attr("title", text);
+        //element.attr("title", text);
+        //do not set title attribute
       }
     }
     return element.data("timeago");

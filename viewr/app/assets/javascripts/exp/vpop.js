@@ -22,7 +22,6 @@ function alertUser(evt) {
       document.title = "("+since_defocused+") Viewr";
     }
     if(Settings.sounds_enabled === true) {
-      console.log("Playing sounds");
       $("audio")[0].play();
     }
     if(window.webkitNotifications && Settings.notifications_enabled === true) {
@@ -110,6 +109,37 @@ function onWindowLoseFocus() {
 }
 dbOnWindowLoseFocus = onWindowLoseFocus.debounce(250, true);
 
+function showEvent(evt) {
+  var icon = '<div class="icon" title="'+evt.etype+'"></div>';
+  if(evt.etype == "NEWS") {
+    var title = '<p class="news_title"><a href="'+evt.uid+'" target="_blank">'+evt.title+'</a></p>'
+  } else {
+    var title = '<p class="news_title">' + evt.title + '</p>';
+  }
+  var thedate = new Date(evt.happened_at);
+  var tmfield = '<time class="timeago" data-title="' + thedate.strftime("%d/%m/%y %H:%M") + '" datetime="' + evt.happened_at + '">Now</time>';
+  var time = '<p class="time">'+tmfield+'</p>';
+  var body = '<p class="news_body">' + evt.description + '</p>';
+  var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
+  $('#news_container ul').prepend($(li));
+  var klass = evt.etype + '_enabled';
+  if(Settings[klass.toLowerCase()] === true) {
+    $('#added_event').fadeIn(800, function() {
+      $('#added_event').attr('style', '');
+    });
+  }
+  $('#added_event time').tooltip({
+    placement: 'left'
+  });
+  $('#added_event time').timeago();
+  $('#added_event').attr('id','');
+  //remove the last child as well
+  $('#news_container ul li:last-child').fadeOut(800, function() {
+    $('#news_container ul li:last-child').remove();
+  });
+  alertUser(evt);
+}
+
 $(document).ready(function() {
   //reflect cookie settings if exists
   if ($.cookie('settings') != null) {
@@ -141,33 +171,7 @@ $(document).ready(function() {
   var faye_url = "http://" + window.location.hostname + ":9292/faye";
   var client = new Faye.Client(faye_url);
   var s = client.subscribe('/messages', function(evt) {
-    var icon = '<div class="icon" title="'+evt.etype+'"></div>';
-    if(evt.etype == "NEWS") {
-      var title = '<p class="news_title"><a href="'+evt.uid+'" target="_blank">'+evt.title+'</a></p>'
-    } else {
-      var title = '<p class="news_title">' + evt.title + '</p>';
-    }
-    var tmfield = '<time class="timeago" data-tooltip="' + evt.happened_at + '" datetime="' + evt.happened_at + '">Now</time>';
-    var time = '<p class="time">'+tmfield+'</p>';
-    var body = '<p class="news_body">' + evt.description + '</p>';
-    var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
-    $('#news_container ul').prepend($(li));
-    var klass = evt.etype + '_enabled';
-    if(Settings[klass.toLowerCase()] === true) {
-      $('#added_event').fadeIn(800, function() {
-        $('#added_event').attr('style', '');
-        $('#added_event time').tooltip({
-          placement: 'left'
-        });
-      });
-    }
-    $('#added_event time').timeago();
-    $('#added_event').attr('id','');
-    //remove the last child as well
-    $('#news_container ul li:last-child').fadeOut(800, function() {
-      $('#news_container ul li:last-child').remove();
-    });
-    alertUser(evt);
+    showEvent(evt);
   });
   $("#toggle_settings").bind('click', function() {
     $("#settings_container").fadeToggle('slow', 'linear');

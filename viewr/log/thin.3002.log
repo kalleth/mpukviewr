@@ -101,3 +101,15 @@ cache: [GET /assets/exp/jquery-52a53a1b4f3508952fede47bd520c8a3.timeago] miss
 >> Thin web server (v1.3.1 codename Triple Espresso)
 >> Maximum connections set to 1024
 >> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3002.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3002, CTRL+C to stop

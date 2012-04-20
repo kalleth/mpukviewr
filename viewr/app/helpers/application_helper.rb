@@ -1,3 +1,5 @@
+require 'dalli'
+
 module ApplicationHelper
   def twitterized_type(type)
     case type
@@ -43,5 +45,19 @@ module ApplicationHelper
     else
       feed[:type]
     end
+  end
+
+  def clients_connected
+    cache.get("clients")
+  end
+
+  def twitter_api_polls_remaining
+    cache.get("twitter_api_polls_remaining")
+  end
+
+  private
+
+  def cache
+    @cache ||= Dalli::Client.new("127.0.0.1:11211")
   end
 end

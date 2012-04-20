@@ -35,6 +35,16 @@ class Controller
   def self.start_faye
     @bayeux = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
     @bayeux.add_extension(ServerAuth.new)
+    @bayeux.bind(:subscribe) do |client_id, channel|
+      if channel == "/messages"
+        Feedpoller.clients += 1
+      end
+    end
+    @bayeux.bind(:unsubscribe) do |client_id, channel|
+      if channel == "/messages"
+        Feedpoller.clients -= 1
+      end
+    end
     Thread.new do
       @bayeux.listen(9292)
     end
@@ -62,6 +72,7 @@ class Controller
   end
 
   def initialize
+    Feedpoller.clients = 0
     load_config_and_create_pollers
     Controller.start_faye
     sleep 30
@@ -84,17 +95,22 @@ class Controller
   end
 
   def report
-	DaemonKit.logger.info("Finished polling loop, remaining hits: #{Twitter.rate_limit_status.remaining_hits.to_s}")
+    rem = Twitter.rate_limit_status.remaining_hits.to_s
+    Feedpoller.tapirem = rem
+    DaemonKit.logger.info("Finished polling loop, remaining hits: #{rem}")
   end
 
   def poll
     begin
+      #Persist to cache # polls remaining etc
+      Feedpoller.persist_info
       check_if_config_needs_reloading
       @pollers.each do |poller|
         poller.poll
       end
     rescue
       DaemonKit.logger.info("Error occurred: #{$!.message}")
+      DaemonKit.logger.info("Error occurred: #{$!.backtrace.join("\n")}")
     end
   end
 

@@ -11,6 +11,7 @@ GEM
       eventmachine (>= 0.12.10)
       safely (>= 0.3.1)
     daemons (1.1.8)
+    dalli (2.0.3)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -109,6 +110,7 @@ PLATFORMS
 
 DEPENDENCIES
   daemon-kit
+  dalli
   data_mapper
   dm-constraints
   dm-core
