@@ -152,3 +152,60 @@ cache: [GET /assets/exp/faye-browser-min-648dbd2fb1a5dcbf6d4f4725579c450c.js] mi
 >> Thin web server (v1.3.1 codename Triple Espresso)
 >> Maximum connections set to 1024
 >> Listening on 0.0.0.0:3001, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3001.pid
+>> Using rack adapter
+>> Thin web server (v1.3.1 codename Triple Espresso)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3001, CTRL+C to stop
+cache: [GET /admin] miss
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] miss
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] miss
+cache: [GET /assets/exp/jquery-3d275122bdf5344e32f7e866346b184d.tooltip] miss, store
+cache: [GET /admin] miss
+cache: [POST /admin/post] invalidate, pass
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] miss, store
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] miss, store
+cache: [GET /assets/exp/jquery-3d275122bdf5344e32f7e866346b184d.tooltip] fresh
+cache: [GET /popup] miss
+cache: [GET /assets/exp/jquery-118244a8f93225c4cd424727dd61992b.timeago] fresh
+cache: [GET /admin/post] miss
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] fresh
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] fresh
+cache: [GET /assets/exp/jquery-3d275122bdf5344e32f7e866346b184d.tooltip] fresh
+cache: [GET /admin/post] miss
+cache: [GET /admin/usrs/new] miss
+cache: [GET /popup] miss
+cache: [GET /admin] miss
+cache: [GET /assets/exp/popup-afe7b8c69572ad7c3ee1d57c8bf2c8e0.css] fresh
+cache: [GET /assets/exp/jquery-3d275122bdf5344e32f7e866346b184d.tooltip] fresh
+cache: [GET /admin] miss
+cache: [GET /popup] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] fresh
+cache: [GET /assets/exp/jquery-118244a8f93225c4cd424727dd61992b.timeago] fresh
+cache: [GET /assets/exp/faye-browser-min-648dbd2fb1a5dcbf6d4f4725579c450c.js] fresh
+cache: [GET /admin/feeds] miss
+cache: [GET /popup] miss
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] fresh
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] fresh
+cache: [GET /assets/exp/jquery-3d275122bdf5344e32f7e866346b184d.tooltip] fresh
+cache: [GET /popup] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] fresh
+cache: [GET /assets/exp/strftime-d55e5c49a27ef3ba12b9cd3e3578a042.js] fresh
+cache: [GET /assets/functions-cc9d172acd6ac941f0f3a57ae8a9d45b.js] fresh
+cache: [GET /] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] fresh
+cache: [GET /admin] miss
+cache: [GET /assets/exp/reset-a60172f6c920af972ab1504526af1791.css] fresh
+cache: [GET /admin] miss
+cache: [GET /assets/exp/popup-afe7b8c69572ad7c3ee1d57c8bf2c8e0.css] fresh
+cache: [GET /assets/exp/vpop-c283817e81a7c4edcd570995bb4881dc.js] fresh
+cache: [GET /assets/exp/strftime-d55e5c49a27ef3ba12b9cd3e3578a042.js] fresh
+cache: [GET /popup] miss
+cache: [GET /assets/jquery_new-4af59b8fdbe25ff5f3068b7d94f18d92.js] fresh
+cache: [GET /assets/exp/jquery-118244a8f93225c4cd424727dd61992b.timeago] fresh
+cache: [GET /assets/exp/faye-browser-min-648dbd2fb1a5dcbf6d4f4725579c450c.js] fresh
+cache: [GET /admin] miss
+cache: [GET /assets/exp/popup-afe7b8c69572ad7c3ee1d57c8bf2c8e0.css] fresh
+cache: [GET /assets/exp/vpop-c283817e81a7c4edcd570995bb4881dc.js] fresh
+cache: [GET /assets/exp/strftime-d55e5c49a27ef3ba12b9cd3e3578a042.js] fresh

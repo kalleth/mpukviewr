@@ -1,5 +1,6 @@
 require 'poller'
 require 'event'
+require 'batch_sender'
 require 'autolink'
 require 'sanitize'
 require 'pollers/rss_poller'
@@ -108,6 +109,7 @@ class Controller
       @pollers.each do |poller|
         poller.poll
       end
+      BatchSender.process_queue
     rescue
       DaemonKit.logger.info("Error occurred: #{$!.message}")
       DaemonKit.logger.info("Error occurred: #{$!.backtrace.join("\n")}")
