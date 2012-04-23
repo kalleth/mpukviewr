@@ -10,7 +10,6 @@ class AdminController < ApplicationController
   end
 
   def post
-    flash[:error] = "post"
   end
 
   def do_post
@@ -27,6 +26,9 @@ class AdminController < ApplicationController
       flash[:notice] = "Post sent successfully."
       redirect_to :action => :index
     end
+  end
+
+  def feeds
   end
 
 end

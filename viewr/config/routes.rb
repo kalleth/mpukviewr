@@ -55,8 +55,10 @@ Viewr::Application.routes.draw do
 
   scope 'admin' do
     root :to => 'admin#index'
+    match '/feeds' => "admin#feeds"
     match '/post' => "admin#post", :via => :get
     match '/post' => "admin#do_post", :via => :post
+    resources :usrs
   end
 
   devise_for :users
