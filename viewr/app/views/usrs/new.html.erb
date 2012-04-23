@@ -1,0 +1,34 @@
+<br /><br />
+<%= form_tag(usrs_path, {:class => "form-horizontal"}) do %>
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="username">Username: </label>
+      <div class="controls">
+        <input type="text" name="user[username]" id="username" class="span4" value="<%= @user.username %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password">Password: </label>
+      <div class="controls">
+        <input type="password" name="user[password]" id="password" class="span4" value="" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password_confirmation">Password (confirmation): </label>
+      <div class="controls">
+        <input type="password" name="user[password_confirmation]" id="password_confirmation" class="span4" value="" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="is_superadmin">Super admin: </label>
+      <div class="controls">
+        <%= check_box_tag 'user[is_superadmin]', @user.is_superadmin %>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-large btn-primary" value="Create user" />
+      </div>
+    </div>
+  </fieldset>
+<% end %>

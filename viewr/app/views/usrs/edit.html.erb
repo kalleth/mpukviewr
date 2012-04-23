@@ -1,0 +1,23 @@
+<br /><br />
+<%= form_tag(usr_path(@user), :method => :put, :class => "form-horizontal") do %>
+  <p>Change password for user: <%= @user.username %></p>
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="password">Password: </label>
+      <div class="controls">
+        <input type="password" name="user[password]" id="password" class="span4" value="" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password_confirmation">Password (confirmation): </label>
+      <div class="controls">
+        <input type="password" name="user[password_confirmation]" id="password_confirmation" class="span4" value="" />
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-large btn-primary" value="Change password" />
+      </div>
+    </div>
+  </fieldset>
+<% end %>

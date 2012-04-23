@@ -20,7 +20,11 @@ class User
   property :current_sign_in_ip, String
   property :last_sign_in_ip,    String
 
-  property :id,         Serial
-  property :is_superadmin,   Boolean
+  property :id,                 Serial
+  property :is_superadmin,      Boolean
+
+  def email_required?
+    false
+  end
 
 end
