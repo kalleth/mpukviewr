@@ -24,7 +24,7 @@ class BatchSender
   
   def sort_queue
     @queue.sort! do |a,b|
-      b.happened_at <=> a.happened_at
+      a.happened_at <=> b.happened_at
     end
   end
 

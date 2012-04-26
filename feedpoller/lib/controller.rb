@@ -109,7 +109,7 @@ class Controller
       @pollers.each do |poller|
         poller.poll
       end
-      BatchSender.process_queue
+      BatchSender.instance.process_queue
     rescue
       DaemonKit.logger.info("Error occurred: #{$!.message}")
       DaemonKit.logger.info("Error occurred: #{$!.backtrace.join("\n")}")

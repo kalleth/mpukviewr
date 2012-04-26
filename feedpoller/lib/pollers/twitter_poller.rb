@@ -17,7 +17,7 @@ class TwitterPoller < Poller
     return if @break
     begin
       DaemonKit.logger.info "Polling twitter for #{@user}"
-      tweets = Twitter.user_timeline(@user)
+      tweets = Twitter.user_timeline(@user, :include_rts => true)
       tweets.each do |tweet|
         #skip replies
         e = Event.first(:etype => TYPE, :uid => tweet['id'])
