@@ -1,3 +1,10 @@
+The below license applies to this entire repository, WITH THE FOLLOWING EXCEPTIONS:
+
+ - viewr/app/assets/stylesheets/exp/popup.css - copyright @CosmicDuck
+ - viewr/public/Helvetica.ttf - proprietary
+ - viewr/public/images/* including subdirectories - copyright @CosmicDuck
+
+---------------------------------------------------------------------------
 THE MIT LICENSE
 
 Copyright (C) 2012 by Tom Russell (www.trdev.co.uk)
