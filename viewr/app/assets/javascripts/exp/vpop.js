@@ -1,30 +1,17 @@
 var window_focus = true;
 var since_defocused = 0;
 
-var Settings = new Object({
-  notifications_enabled: false,
-  sounds_enabled: true,
-  tweet_enabled: true,
-  forum_enabled: true,
-  tourney_enabled: true,
-  facebook_enabled: true,
-  general_enabled: true,
-  service_enabled: true,
-  news_enabled: true
-});
-
-
 function alertUser(evt) {
   var klass = evt.etype + '_enabled';
-  if(Settings[klass.toLowerCase()] === true) {
+  if([window.Settings.klass.toLowerCase()] === true) {
     if(!window_focus) {
       since_defocused++;
       document.title = "("+since_defocused+") Viewr";
     }
-    if(Settings.sounds_enabled === true) {
+    if(window.Settings.sounds_enabled === true) {
       $("audio")[0].play();
     }
-    if(window.webkitNotifications && Settings.notifications_enabled === true) {
+    if(window.webkitNotifications && window.Settings.notifications_enabled === true) {
       dtopNotify(evt);
     }
   }
@@ -66,7 +53,7 @@ function fadeUnseen() {
 }
 
 function storeSettingsInCookie() {
-  $.cookie('settings', JSON.stringify(Settings), { expires: 7 });
+  $.cookie('settings', JSON.stringify(window.Settings, { expires: 7 }));
 }
 
 function respectFilters(klass, new_value) {
@@ -87,9 +74,10 @@ function respectFilters(klass, new_value) {
 db_storeSettingsInCookie = storeSettingsInCookie.debounce(500, false);
 
 function checkListener (evt) {
+    console.log("Checklistener called.");
     //var id = this.id.substr(9);
     var new_value = ($("#" + this.id + ":checked").length > 0);
-    Settings[this.id] = new_value;
+    window.Settings[this.id] = new_value;
     var klass = this.id.substr(0, (this.id.length - 8));
     respectFilters(klass, new_value);
     db_storeSettingsInCookie();
@@ -123,7 +111,7 @@ function showEvent(evt) {
   var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
   $('#news_container ul').prepend($(li));
   var klass = evt.etype + '_enabled';
-  if(Settings[klass.toLowerCase()] === true) {
+  if(window.Settings[klass.toLowerCase()] === true) {
     $('#added_event').fadeIn(800, function() {
       $('#added_event').attr('style', '');
     });
@@ -141,26 +129,6 @@ function showEvent(evt) {
 }
 
 $(document).ready(function() {
-  //reflect cookie settings if exists
-  if ($.cookie('settings') != null) {
-    Settings = JSON.parse($.cookie('settings'));
-    //force general, tannoy and service announcements to be made
-    Settings.general_enabled = true;
-    Settings.tannoy_enabled = true;
-    Settings.service_enabled = true;
-  }
-  $(":checkbox[id*='enabled']").each(function(cb){
-    $(this).click(checkListener);
-    //reflect settings
-    var klass = this.id.substr(0, (this.id.length - 8));
-    if (Settings[this.id]) {
-      $(this).prop("checked", true);
-      respectFilters(klass, true);
-    } else {
-      $(this).prop("checked", false);
-      respectFilters(klass, false);
-    }
-  });
   $("#notifications_enabled").bind('click', function() {
     if($(this).prop("checked")) {
       window.webkitNotifications.requestPermission();
