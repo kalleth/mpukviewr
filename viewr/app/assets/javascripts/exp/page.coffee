@@ -1,5 +1,4 @@
-# Once this coffee file is the initialiser for everything, Settings doesn't
-# need scoping to Window.
+# Below will move to window.viewr namespace when i cba to update legacy js.
 window.Settings = new Object(
   notifications_enabled: false
   sounds_enabled: true
@@ -17,8 +16,8 @@ window.Settings = new Object(
 $(document).ready ->
   settingsReflectsCookie()
   addCheckboxListeners()
-  view_mgr = new ViewManager(window.Settings)
-  notifier = new Notifier(window.Settings)
+  view_mgr = new viewr.ViewManager(window.Settings)
+  notifier = new viewr.Notifier(window.Settings)
   createListener(window.Settings, view_mgr, notifier)
 
 settingsReflectsCookie = ->
@@ -34,5 +33,5 @@ addCheckboxListeners = ->
     respectFilters(klass, act)
 
 createListener = (settings, view_manager, notifier) ->
-  listener = new FayeListener(settings, view_manager, notifier)
+  listener = new viewr.FayeListener(settings, view_manager, notifier)
   listener.connect()

@@ -3,7 +3,7 @@
 #  * When told to, inserting a new event (and removing an old event) from
 #    the DOM, based on a given data structure.
 
-class ViewManager
+class window.viewr.ViewManager
   constructor: (@settings) ->
     @loadTemplates()
 
