@@ -1,5 +1,5 @@
-# Create new settings var. To be loaded later.
-
+# Once this coffee file is the initialiser for everything, Settings doesn't
+# need scoping to Window.
 window.Settings = new Object(
   notifications_enabled: false
   sounds_enabled: true
@@ -17,6 +17,9 @@ window.Settings = new Object(
 $(document).ready ->
   settingsReflectsCookie()
   addCheckboxListeners()
+  view_mgr = new ViewManager(window.Settings)
+  notifier = new Notifier(window.Settings)
+  createListener(window.Settings, view_mgr, notifier)
 
 settingsReflectsCookie = ->
   if $.cookie('settings')?
@@ -29,3 +32,7 @@ addCheckboxListeners = ->
     act = window.Settings[this.id]
     $(this).prop "checked", act
     respectFilters(klass, act)
+
+createListener = (settings, view_manager, notifier) ->
+  listener = new FayeListener(settings, view_manager, notifier)
+  listener.connect()

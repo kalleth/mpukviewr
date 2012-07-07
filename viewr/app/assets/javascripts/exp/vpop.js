@@ -3,7 +3,7 @@ var since_defocused = 0;
 
 function alertUser(evt) {
   var klass = evt.etype + '_enabled';
-  if([window.Settings.klass.toLowerCase()] === true) {
+  if(window.Settings[klass.toLowerCase()] === true) {
     if(!window_focus) {
       since_defocused++;
       document.title = "("+since_defocused+") Viewr";
