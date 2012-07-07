@@ -1,4 +1,4 @@
-window.viewr.FayeListener = class
+class window.viewr.FayeListener
   constructor: (@settings, @view_manager, @notifier) ->
 
   connect: ->

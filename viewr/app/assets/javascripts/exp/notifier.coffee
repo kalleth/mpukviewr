@@ -1,4 +1,4 @@
-window.viewr.Notifier = class
+class window.viewr.Notifier
   
   constructor: (@settings) ->
 

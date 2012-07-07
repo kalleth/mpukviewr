@@ -18,7 +18,8 @@ $(document).ready ->
   addCheckboxListeners()
   view_mgr = new viewr.ViewManager(window.Settings)
   notifier = new viewr.Notifier(window.Settings)
-  createListener(window.Settings, view_mgr, notifier)
+  listener = new viewr.FayeListener(window.Settings, view_mgr, notifier)
+  listener.connect()
 
 settingsReflectsCookie = ->
   if $.cookie('settings')?
@@ -31,7 +32,3 @@ addCheckboxListeners = ->
     act = window.Settings[this.id]
     $(this).prop "checked", act
     respectFilters(klass, act)
-
-createListener = (settings, view_manager, notifier) ->
-  listener = new viewr.FayeListener(settings, view_manager, notifier)
-  listener.connect()
