@@ -55,9 +55,19 @@ module ApplicationHelper
     cache.get("twitter_api_polls_remaining")
   end
 
+  def render_header_templates(context)
+    str = ""
+    Dir.foreach("app/views/templates/#{context}") do |item|
+      next if item == '.' or item == '..'
+      str += render "templates/popup/#{item.sub("_","")}"
+    end
+    str
+  end
+
   private
 
   def cache
     @cache ||= Dalli::Client.new("127.0.0.1:11211")
   end
+
 end
