@@ -33,6 +33,8 @@ class ForumPoller < Poller
 
   def title_from_post_with_link(post)
     "<a href=\"#{post.guid}\" target=\"_blank\">#{Sanitize.clean(post.title)}</a> - #{post.dc_creator}"
+  rescue
+    "<a href=\"#{post.guid}\" target=\"_blank\">Error - could not retrieve post title (encoding)</a> - #{post.dc_creator}"
   end
 
   def content_from_post_with_link(post)

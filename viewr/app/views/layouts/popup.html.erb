@@ -58,7 +58,7 @@
     <div id="news_container">
       <ul>
         <% @events.each do |event| %>
-          <li class="news_item <%= event.etype.downcase %>">
+          <li class="news_item <%= event.etype.downcase rescue "UNKNOWN" %>">
           <div class="icon" title="<%= event.etype %>"></div>
           <p class="news_title">
           <% if event.etype == "NEWS" %>
@@ -68,9 +68,9 @@
           <% end %>
           </p>
           <p class="time">
-          <time class="timeago" data-title="<%= event.happened_at.strftime("%d/%m/%y %H:%M") %>" datetime="<%= event.happened_at %>">
-              <%= shorter_time_ago_in_words(event.happened_at) %>
-            </time>
+          <time class="timeago" data-title="<%= event.happened_at.strftime("%d/%m/%y %H:%M") rescue "UNKNOWN" %>" datetime="<%= event.happened_at %>">
+            <%= shorter_time_ago_in_words(event.happened_at) rescue "UNKNOWN"%>
+          </time>
           </p>
           <p class="news_body">
           <%= raw event.description %>

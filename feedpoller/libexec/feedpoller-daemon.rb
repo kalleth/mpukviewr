@@ -2,7 +2,7 @@ require 'rubygems'
 require 'data_mapper'
 require 'controller'
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'mysql://mpuk:mult1play@localhost/mpuk')
+DataMapper.setup(:default, 'mysql://mpuk:p455formultiplayi45@localhost/mpuk')
 # Change this file to be a wrapper around your daemon code.
 
 # Do your post daemonization configuration here
