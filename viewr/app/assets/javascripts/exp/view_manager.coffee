@@ -5,10 +5,38 @@
 
 class window.viewr.ViewManager
   constructor: (@settings) ->
-    @loadTemplates()
+    @template = @loadTemplates()
 
   loadTemplates: ->
-    console.log "Loading templates"
+    data = $('#template-message').html()
+    Handlebars.compile(data)
 
   showMessage: (payload) ->
-    console.log "Payload: ", payload
+    viewData = @massagePayload(payload)
+    element = @template(viewData)
+    @insertElement(element)
+    @bindElementItems(element)
+    @removeLastChild()
+
+  massagePayload: (payload) ->
+    # For handlebars, we need to add a couple of fields.
+    # title_link - boolean, if this has a title link or not
+    payload.title_link = (payload.etype == "NEWS")
+    payload.strftime_date = new Date(payload.happened_at).strftime("%d/%m/%y %H:%M")
+    payload.lower_etype = payload.etype.toLowerCase()
+    payload
+
+  insertElement: (element) =>
+    el = $(element)
+    $("#news_container ul").prepend(el)
+    el.fadeIn(800)
+
+  bindElementItems: (element) =>
+    time = $(element).find('.time time')
+    time.tooltip({placement: 'left'})
+    time.timeago()
+
+  removeLastChild: ->
+    $("#news_container ul li:last-child").fadeOut(200, ->
+      $(this).remove()
+    )

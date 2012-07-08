@@ -1,8 +1,16 @@
 <script id="template-message" type="text/html">
-  <li class="message">
-    <div class="icon" title=""></div>
-    <p class="title"><a class="message-link" href=""></a></p>
-    <p class="time"></p>
-    <p class="body"></p>
+  <li class="news_item unseen {{lower_etype}}" style="display: none;">
+    <div class="icon" title="{{etype}}"></div>
+    <p class="news_title">
+      {{#if title_link}}
+        <a href="{{uid}}" target="_blank">{{title}}</a>
+      {{else}}
+        {{title}}
+      {{/if}}
+    </p>
+    <p class="time">
+      <time class="timeago" data-title="{{strftime_date}}" datetime="{{happened_at}}">Now</time>
+    </p>
+    <p class="news_body">{{description}}</p>
   </li>
 </script>

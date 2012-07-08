@@ -97,7 +97,7 @@ function onWindowLoseFocus() {
 }
 dbOnWindowLoseFocus = onWindowLoseFocus.debounce(250, true);
 
-function showEvent(evt) {
+/*function showEvent(evt) {
   var icon = '<div class="icon" title="'+evt.etype+'"></div>';
   if(evt.etype == "NEWS") {
     var title = '<p class="news_title"><a href="'+evt.uid+'" target="_blank">'+evt.title+'</a></p>'
@@ -109,6 +109,7 @@ function showEvent(evt) {
   var time = '<p class="time">'+tmfield+'</p>';
   var body = '<p class="news_body">' + evt.description + '</p>';
   var li = '<li id="added_event" class="news_item hidden unseen ' + evt.etype.toLowerCase() + '">' + icon + title + time + body + '</li>';
+  console.log("Inserting:", li)
   $('#news_container ul').prepend($(li));
   var klass = evt.etype + '_enabled';
   if(window.Settings[klass.toLowerCase()] === true) {
@@ -126,7 +127,7 @@ function showEvent(evt) {
     $('#news_container ul li:last-child').remove();
   });
   alertUser(evt);
-}
+}*/
 
 $(document).ready(function() {
   $("#notifications_enabled").bind('click', function() {
@@ -136,11 +137,11 @@ $(document).ready(function() {
   });
   $("time.timeago").timeago();
   $("time").tooltip({placement: 'left'});
-  var faye_url = "http://" + window.location.hostname + ":9292/faye";
+/*  var faye_url = "http://" + window.location.hostname + ":9292/faye";
   var client = new Faye.Client(faye_url);
   var s = client.subscribe('/messages', function(evt) {
     showEvent(evt);
-  });
+  });*/
   $("#toggle_settings").bind('click', function() {
     $("#settings_container").fadeToggle('slow', 'linear');
   });
@@ -149,8 +150,5 @@ $(document).ready(function() {
   });
   $(window).blur(function() {
     dbOnWindowLoseFocus();
-  });
-  s.errback(function(err) {
-    console.log(err);
   });
 });
