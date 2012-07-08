@@ -3,14 +3,14 @@
     <div class="icon" title="{{etype}}"></div>
     <p class="news_title">
       {{#if title_link}}
-        <a href="{{{uid}}}" target="_blank">{{title}}</a>
+        <a href="{{{uid}}}" target="_blank">{{{title}}}</a>
       {{else}}
-        {{title}}
+        {{{title}}}
       {{/if}}
     </p>
     <p class="time">
       <time class="timeago" data-title="{{strftime_date}}" datetime="{{happened_at}}">Now</time>
     </p>
-    <p class="news_body">{{description}}</p>
+    <p class="news_body">{{{description}}}</p>
   </li>
 </script>
