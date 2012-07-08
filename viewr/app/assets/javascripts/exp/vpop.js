@@ -44,11 +44,6 @@ function checkListener (evt) {
 }
 
 $(document).ready(function() {
-  $("#notifications_enabled").bind('click', function() {
-    if($(this).prop("checked")) {
-      window.webkitNotifications.requestPermission();
-    }
-  });
   $("time.timeago").timeago();
   $("time").tooltip({placement: 'left'});
   $("#toggle_settings").bind('click', function() {

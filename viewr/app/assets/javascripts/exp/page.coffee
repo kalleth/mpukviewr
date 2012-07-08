@@ -36,6 +36,15 @@ addCheckboxListeners = ->
     act = window.Settings[this.id]
     $(this).prop "checked", act
     respectFilters(klass, act)
+  $("#notifications_enabled").bind('click', ->
+    if $(this).prop("checked")
+      if window.webkitNotifications
+        window.webkitNotifications.requestPermission()
+      else
+        alert("You must be using a webkit browser (i.e. chrome) to have desktop notifications.
+ Without chrome, they won't work.\n\n
+To download chrome, go to http://google.com/chrome. Do it. Now. Why aren't you using it already?")
+  )
 
 onWindowFocus = ->
   window.viewr.window_focus = true
