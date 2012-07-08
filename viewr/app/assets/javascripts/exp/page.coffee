@@ -16,10 +16,14 @@ window.Settings = new Object(
 $(document).ready ->
   settingsReflectsCookie()
   addCheckboxListeners()
-  view_mgr = new viewr.ViewManager(window.Settings)
-  notifier = new viewr.Notifier(window.Settings)
-  listener = new viewr.FayeListener(window.Settings, view_mgr, notifier)
-  listener.connect()
+  window.viewr.view_mgr = new viewr.ViewManager(window.Settings)
+  window.viewr.notifier = new viewr.Notifier(window.Settings)
+  window.viewr.listener = new viewr.FayeListener(window.Settings, window.viewr.view_mgr, window.viewr.notifier)
+  window.viewr.listener.connect()
+  $(window).focus ->
+    dbOnWindowFocus()
+  $(window).blur ->
+    dbOnWindowLoseFocus()
 
 settingsReflectsCookie = ->
   if $.cookie('settings')?
@@ -32,3 +36,15 @@ addCheckboxListeners = ->
     act = window.Settings[this.id]
     $(this).prop "checked", act
     respectFilters(klass, act)
+
+onWindowFocus = ->
+  window.viewr.window_focus = true
+  window.viewr.notifier.resetUnseen()
+  document.title = "Viewr"
+  fadeUnseen()
+
+onWindowLoseFocus = ->
+  window.viewr.window_focus = false
+
+dbOnWindowFocus = onWindowFocus.debounce(250, true)
+dbOnWindowLoseFocus = onWindowLoseFocus.debounce(250, true)

@@ -1,8 +1,5 @@
-window.window_focus = true;
-var since_defocused = 0;
-
 function fadeUnseen() {
-  if(window.window_focus) {
+  if(window.viewr.window_focus) {
     setTimeout(function() {
       $("li.unseen").each(function() {
         $(this).animate({backgroundColor:"#f8f8f8"}, 2000, function() {
@@ -46,19 +43,6 @@ function checkListener (evt) {
     db_storeSettingsInCookie();
 }
 
-function onWindowFocus() {
-  window.window_focus = true;
-  document.title = "Viewr";
-  fadeUnseen();
-}
-
-dbOnWindowFocus = onWindowFocus.debounce(250, true);
-
-function onWindowLoseFocus() {
-  window.window_focus = false;
-}
-dbOnWindowLoseFocus = onWindowLoseFocus.debounce(250, true);
-
 $(document).ready(function() {
   $("#notifications_enabled").bind('click', function() {
     if($(this).prop("checked")) {
@@ -69,11 +53,5 @@ $(document).ready(function() {
   $("time").tooltip({placement: 'left'});
   $("#toggle_settings").bind('click', function() {
     $("#settings_container").fadeToggle('slow', 'linear');
-  });
-  $(window).focus(function() {
-    dbOnWindowFocus();
-  });
-  $(window).blur(function() {
-    dbOnWindowLoseFocus();
   });
 });
