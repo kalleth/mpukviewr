@@ -13,7 +13,7 @@ class window.viewr.ViewManager
 
   showMessage: (payload) ->
     viewData = @massagePayload(payload)
-    element = @template(viewData)
+    element = $(@template(viewData))
     @insertElement(element)
     @bindElementItems(element)
     @removeLastChild()
@@ -27,12 +27,11 @@ class window.viewr.ViewManager
     payload
 
   insertElement: (element) =>
-    el = $(element)
-    $("#news_container ul").prepend(el)
-    el.fadeIn(800)
+    $("#news_container ul").prepend(element)
+    element.fadeIn(800)
 
   bindElementItems: (element) =>
-    time = $(element).find('.time time')
+    time = element.find('.time time')
     time.tooltip({placement: 'left'})
     time.timeago()
 
