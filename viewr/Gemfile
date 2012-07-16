@@ -46,7 +46,7 @@ gem 'dm-transactions',      DM_VERSION
 gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
-gem 'dm-devise',            '~> 2.0.1'
+gem 'dm-devise',            '~> 2.1.0'
 
 group(:development, :test) do
 

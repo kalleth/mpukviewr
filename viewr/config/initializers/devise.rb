@@ -8,9 +8,6 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
-  # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
-
   # ==> Validations Library
   # dm-devise adds some compatibility methods for either dm-validations or
   # Active Model validations. By default, it determines what to load based on
@@ -24,12 +21,6 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/data_mapper'
-
-  # ==> Apply Schema
-  # Tells if dm-devise should apply the devise database schema via property
-  # declarations. You may want to set this to false if working with a legacy
-  # schema.
-  config.apply_schema = true
 
   # ==> dm-validations Default Error Messages
   # Messages to use as the default DataMapper validation error messages. The
@@ -132,10 +123,6 @@ Devise.setup do |config|
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
-
-  # If true, uses the password salt as remember token. This should be turned
-  # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
 
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.

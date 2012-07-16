@@ -12,7 +12,7 @@ class ViewrSetting
   end
 
   def load_settings
-    @config = YAML.load_file("/data/mpuk/settings.yml")
+    @config = YAML.load_file("#{Rails.root}/../settings.yml")
   end
 
 end
