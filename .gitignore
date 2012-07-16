@@ -1,0 +1,6 @@
+settings.yml
+viewr/log/*
+viewr/public/*
+viewr/tmp/*
+viewr/config/database.yml
+viewr/public/assets/*
