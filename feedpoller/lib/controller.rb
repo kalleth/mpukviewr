@@ -8,7 +8,8 @@ require 'pollers/xml_poller'
 require 'pollers/forum_poller'
 require 'pollers/news_poller'
 require 'pollers/twitter_poller'
-require 'faye'
+require 'net/http'
+require 'json'
 
 class Controller
 
@@ -26,12 +27,8 @@ class Controller
 
   def self.notify(event)
     event["secret"] = config[:secret]
-    bayeux_client.publish("/messages", event)
-  end
-
-  def self.bayeux_client
-    # create faye client
-    @client ||= Faye::Client.new('http://localhost:9292/faye')
+    message = JSON.dump('channel' => '/messages', 'data' => event)
+    Net::HTTP.post_form(URI.parse('http://localhost:9292/faye'), :message => message)
   end
 
   def initialize
