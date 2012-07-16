@@ -10,7 +10,6 @@ window.Settings = new Object(
   service_enabled: true
   news_enabled: true
   tannoy_enabled: true
-  service_enabled: true
 )
 
 $(document).ready ->

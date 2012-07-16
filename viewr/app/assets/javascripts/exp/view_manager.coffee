@@ -36,6 +36,7 @@ class window.viewr.ViewManager
     time.timeago()
 
   removeLastChild: ->
-    $("#news_container ul li:last-child").fadeOut(200, ->
-      $(this).remove()
-    )
+    if $("#news_container ul li").length > 49
+      $("#news_container ul li:last-child").fadeOut(200, ->
+        $(this).remove()
+      )
