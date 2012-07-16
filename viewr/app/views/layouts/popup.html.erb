@@ -15,7 +15,7 @@
     <div id="header">
       <a class ="button incleft" href="http://iseries.multiplay.co.uk/" title="iSeries Homepage" target="_blank"><img id="mplogo" src="/images/mplogo.png"/></a>
       <!-- If connection problem, remove hidden class from span, if not, use hidden class.-->
-      <div id="header_title">Viewr - i45<span id="status" class="hidden"> - Connection Error</span></div>
+      <div id="header_title">Viewr - <%= ViewrSetting.instance.config[:event] %><span id="status" class="hidden"> - Connection Error</span></div>
       <a class="button right" href="#" id="toggle_settings" title="Settings"><img id="cog" src="/images/cog2.png"/></a>
     </div>
     <div id="settings_container" style="display: none;">
