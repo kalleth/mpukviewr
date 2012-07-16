@@ -1,0 +1,13 @@
+nginx-full
+gcc
+make
+libyaml-dev
+libncurses5-dev
+zlib1g-dev
+memcached
+libssl-dev
+mysql-server
+libmysqld-dev
+libsqlite3-dev
+libxml2-dev
+libxslt1-dev
