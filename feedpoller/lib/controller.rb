@@ -10,50 +10,11 @@ require 'pollers/news_poller'
 require 'pollers/twitter_poller'
 require 'faye'
 
-class ServerAuth
-
-  def incoming(message, callback)
-    if message['channel'] == '/messages'
-      puts "Message incoming on messages channel"
-      if message['data'] && message['data']['secret'] != Controller.config[:secret]
-        message['error'] = "You are not authorized to send to this stream."
-      else
-        #authorized
-        message['data'].delete('secret')
-      end
-    end
-    callback.call(message)
-  end
-
-end
-
 class Controller
 
   DataMapper.finalize
 
-  CONFIG_FILE = "/data/mpuk/settings.yml"
-
-  def self.start_faye
-    @bayeux = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
-    @bayeux.add_extension(ServerAuth.new)
-    @bayeux.bind(:subscribe) do |client_id, channel|
-      if channel == "/messages"
-        Feedpoller.clients += 1
-      end
-    end
-    @bayeux.bind(:unsubscribe) do |client_id, channel|
-      if channel == "/messages"
-        Feedpoller.clients -= 1
-      end
-    end
-    Thread.new do
-      @bayeux.listen(9292)
-    end
-  end
-
-  def self.stop_faye
-    @bayeux.stop
-  end
+  CONFIG_FILE = "#{File.dirname(__FILE__)}/../../settings.yml"
 
   def self.config=(cfg)
     @config = cfg
@@ -65,18 +26,17 @@ class Controller
 
   def self.notify(event)
     event["secret"] = config[:secret]
-    @bayeux.get_client.publish("/messages", event)
+    bayeux_client.publish("/messages", event)
   end
 
-  def self.bclient
-    @bayeux.get_client
+  def self.bayeux_client
+    # create faye client
+    @client ||= Faye::Client.new('http://localhost:9292/faye')
   end
 
   def initialize
-    Feedpoller.clients = 0
     load_config_and_create_pollers
-    Controller.start_faye
-    sleep 30
+    sleep 10
   end
 
   def load_config_and_create_pollers

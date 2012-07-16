@@ -6,10 +6,9 @@ module Feedpoller
   
   class << self
 
-    attr_accessor :memcache, :clients, :tapirem
+    attr_accessor :memcache, :tapirem
       
     def persist_info
-      cache.set('clients', @clients)
       cache.set('twitter_api_polls_remaining', @tapirem)
     end
 

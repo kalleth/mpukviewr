@@ -2,7 +2,7 @@ require 'rubygems'
 require 'data_mapper'
 require 'controller'
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'mysql://mpuk:p455formultiplayi45@localhost/mpuk')
+DataMapper.setup(:default, 'mysql://root@localhost/mpuk')
 # Change this file to be a wrapper around your daemon code.
 
 # Do your post daemonization configuration here
@@ -16,7 +16,6 @@ DaemonKit::Application.running! do |config|
 #  config.trap( 'TERM', Proc.new { puts 'Going down' } )
   config.trap('TERM') do
     #kill the faye server
-    puts "STOPPING FAYE"
     Controller.stop_faye
   end
 end
