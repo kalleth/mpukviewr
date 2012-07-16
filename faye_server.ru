@@ -29,6 +29,7 @@ def report_users
   $cache.set('clients', $clients)
 end
 
+Faye::WebSocket.load_adapter('thin')
 bayeux = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
 bayeux.add_extension(ServerAuth.new)
 bayeux.bind(:subscribe) do |client_id, channel|
