@@ -26,7 +26,7 @@ class window.viewr.Notifier
         popup.show()
         setTimeout(->
           popup.cancel()
-        , '15000')
+        , '7500')
 
   titleNotify: ->
     if !window.window_focus
