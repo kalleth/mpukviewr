@@ -9,5 +9,6 @@ libssl-dev
 mysql-server
 libmysqld-dev
 libsqlite3-dev
+libreadline-dev
 libxml2-dev
 libxslt1-dev

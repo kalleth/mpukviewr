@@ -1,8 +1,7 @@
 defaults: &defaults
   adapter: mysql
   database: mpuk
-  username: mpuk
-  password: mult1play
+  username: root
   host: localhost
 
 development:
