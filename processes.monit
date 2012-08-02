@@ -4,11 +4,11 @@ check process nginx
   stop program = "/etc/init.d/nginx stop"
   if failed host 127.0.0.1 port 80 then restart
   if 5 restarts within 5 cycles then timeout
-  
+
 check process viewr-3000
   with pidfile /data/mpukviewr/viewr/tmp/pids/thin.3000.pid
-  start program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3000'"
-  stop program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3000'"
+  start program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3000'"
+  stop program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3000'"
   if totalmem > 200 MB for 4 cycles then restart
   if cpu > 90% for 4 cycles then restart
   if loadavg(5min) > 10 for 8 cycles then restart
@@ -16,8 +16,8 @@ check process viewr-3000
 
 check process viewr-3001
   with pidfile /data/mpukviewr/viewr/tmp/pids/thin.3001.pid
-  start program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3001'"
-  stop program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3001'"
+  start program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3001'"
+  stop program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3001'"
   if totalmem > 200 MB for 4 cycles then restart
   if cpu > 90% for 4 cycles then restart
   if loadavg(5min) > 10 for 8 cycles then restart
@@ -25,8 +25,8 @@ check process viewr-3001
 
 check process viewr-3002
   with pidfile /data/mpukviewr/viewr/tmp/pids/thin.3002.pid
-  start program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3002'"
-  stop program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3002'"
+  start program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin start -C config/thin.yml -o 3002'"
+  stop program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr/viewr && bundle exec thin stop -C config/thin.yml -o 3002'"
   if totalmem > 200 MB for 4 cycles then restart
   if cpu > 90% for 4 cycles then restart
   if loadavg(5min) > 10 for 8 cycles then restart
@@ -34,11 +34,11 @@ check process viewr-3002
 
 check process feedpoller
   with pidfile /data/mpukviewr/feedpoller/log/feedpoller.pid
-  start program = "/data/mpukviewr/feedpoller/bin/feedpoller start"
-  stop program = "/data/mpukviewr/feedpoller/bin/feedpoller stop"
+  start program = "/bin/bash -c '/data/mpukviewr/feedpoller/bin/feedpoller start &>/tmp/feedpoller.out'"
+  stop program = "/bin/bash -c '/data/mpukviewr/feedpoller/bin/feedpoller stop'"
   if totalmem > 250 MB for 4 cycles then restart
 
 check process faye-server
   with pidfile /var/run/faye_server.9292.pid
-  start program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr && thin start -C faye_server.yml'"
-  stop program = "/usr/local/sbin/spawner.sh 'cd /data/mpukviewr && thin stop -C faye_server.yml'"
+  start program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr && thin start -C faye_server.yml &>/tmp/faye.out'"
+  stop program = "/bin/bash -c 'export PATH=/usr/local/bin:$PATH && cd /data/mpukviewr && thin stop -C faye_server.yml'"
